@@ -12,6 +12,7 @@
 -- a linha abaixo cria o banco de dados moinho
 create database moinho;
 
+
 -- a linha abaixo seleciona o banco de dados moinho
 use moinho;
 
@@ -21,9 +22,9 @@ id int not null primary key auto_increment,
 login varchar(45) not null,
 senha varchar (8) not null,
 perfil varchar(10)
-);
+)Engine = InnoDB;
 
---aumenta o tamanho do campo perfil de 10 para 13
+-- aumenta o tamanho do campo perfil de 10 para 13
 alter table usuario_sistema modify perfil varchar(13);
 
 -- a linha abaixo faz a inserção da tabela usuario_sistema
@@ -34,20 +35,25 @@ create table colaborador(
 
 idcolaborador int not null primary key auto_increment,
 ano_de_ingresso date,
-area_de_atuacao varchar(50),
-turmas_ministradas varchar(50)
+area_de_atuacao varchar(50)
 
-);
--- Inserções na tabela de colaboradores
-insert into colaborador(ano_de_ingresso,area_de_atuacao,turmas_ministradas) values('2010-01-08','Professor de Idiomas','T01');
-insert into colaborador(ano_de_ingresso,area_de_atuacao,turmas_ministradas) values('2010-05-10','Instrutor de bateria','T02'); 
+
+)Engine = InnoDB;
+
+-- adiciona um campo ao final da tabela colaborador
+alter table colaborador add column turmaministradas int not null;
+
+-- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela turma
+alter table colaborador add foreign key (turmaministradas) references turma(idturma);
+
+
 
 -- a linha abaixo cria a tabela turno
 create table turno(
 idturno int not null primary key auto_increment,
 turnoo enum('M','V','N')
 
-);
+)Engine = InnoDB;
 
 -- a linha abaixo faz a inserção dos turnos
 insert into turno (turnoo) values ('M'), ('V'),('N');
@@ -58,7 +64,7 @@ idhorario int not null primary key auto_increment,
 hora_inicio time,
 hora_fim time
 
-);
+)Engine = InnoDB;
 
 -- a tabela abaixo cria a tabela cadastro_universal
 create table cadastro_universal (
@@ -68,7 +74,7 @@ data_nascimento date,
 telefone varchar(15),
 email varchar(40)
 
-);
+)Engine = InnoDB;
 
 -- a linha abaixo cria a tabela ficha de avaliacao
 create table ficha_de_avaliacao (
@@ -79,7 +85,7 @@ danca int(10),
 desenvoltura int(10),
 tecnologia int(10)
 
-);
+)Engine = InnoDB;
 
 -- a linha abaixo cria a tabela usuario
 create table usuario (
@@ -96,10 +102,10 @@ responsaveis text,
 email varchar(45),
 profissao varchar(45),
 raca varchar(30),
-religiao varchar(45),
+religiao varchar(45)
 
 
-);
+)Engine = InnoDB;
 
 create table endereco (
 idend int not null primary key auto_increment,
@@ -112,14 +118,14 @@ complemento varchar(50),
 num_da_residencia varchar(50)
 
 
-);
+)Engine = InnoDB;
 
 -- a linha abaixo cria a tabela pais(mae,pai)
 create table pais (
 idpais int not null primary key auto_increment,
 nome varchar(45)
 
-);
+)Engine = InnoDB;
 
 -- a linha abaixo cria a tabela ocorrencias
 create table ocorrencias (
@@ -129,14 +135,14 @@ data_ocorencia date,
 motivo text,
 abuso text
 
-);
+)Engine = InnoDB;
 
 -- a linha abaixo cria a tabela turma
 create table turma (
 idturma int not null primary key auto_increment,
 tipoturma enum('B1','B2','B3','I')
 
-);
+)Engine = InnoDB;
 
 -- a linha abaixo insere na tabela turma
 insert into turma(tipoturma) values ('B1'),('B2'),('B3'),('I');
@@ -153,7 +159,7 @@ beneficio_social varchar(50),
 ano_de_entrada date
 
 
-);
+)Engine = InnoDB;
 
 -- a linha abaixo cria a tabela frequencia
 create table frequencia(
@@ -162,7 +168,7 @@ presenca enum ('F','P'),
 data_aula date,
 justificar_falta text
 
-);
+)Engine = InnoDB;
 
 -- a linha abaixo cria a tabela eventos
 create table eventos (
@@ -174,4 +180,4 @@ responsaveis varchar(45),
 dataeven date
 
 
-);
+)Engine = InnoDB;
