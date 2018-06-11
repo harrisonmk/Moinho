@@ -28,7 +28,10 @@ perfil varchar(10)
 alter table usuario_sistema modify perfil varchar(13);
 
 -- a linha abaixo faz a inserção da tabela usuario_sistema
-insert into usuario_sistema(login,senha,perfil) values ('admin','admin','administrador'), ('renan','132','diretor');
+insert into usuario_sistema(login,senha,perfil) values ('admin','admin','administrador');
+insert into usuario_sistema(login,senha,perfil) values ('renan','132','diretor');
+insert into usuario_sistema(login,senha,perfil) values ('João','vgas23','coordenador');
+insert into usuario_sistema(login,senha,perfil) values ('Ágata','cross67','Colaborador');
 
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
@@ -46,7 +49,18 @@ alter table colaborador add column turmaministradas int not null;
 -- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela turma
 alter table colaborador add foreign key (turmaministradas) references turma(idturma);
 
+-- Inserções na tabela de colaboradores
+insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
+ values('2010-01-08','Professor de Inglês',1);
 
+insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
+ values('2010-05-10','Instrutor de bateria',2); 
+
+insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
+ values ('2005-08-20','Professor de Alemão',3);
+
+insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
+ values ('2012-10-3','Instrutor de violão',4);
 
 -- a linha abaixo cria a tabela turno
 create table turno(
@@ -56,7 +70,10 @@ turnoo enum('M','V','N')
 )Engine = InnoDB;
 
 -- a linha abaixo faz a inserção dos turnos
-insert into turno (turnoo) values ('M'), ('V'),('N');
+insert into turno (turnoo) values ('M');
+insert into turno (turnoo) values ('V');
+insert into turno (turnoo) values('N');
+insert into turno (turnoo) values ('M');
 
 -- a linha abaixo cria a tabela de horario
 create table horario (
