@@ -35,6 +35,9 @@ area_de_atuacao varchar(50),
 turmas_ministradas varchar(50)
 
 );
+-- Inserções na tabela de colaboradores
+insert into colaborador(ano_de_ingresso,area_de_atuacao,turmas_ministradas) values('2010-01-08','Professor de Idiomas','T01');
+insert into colaborador(ano_de_ingresso,area_de_atuacao,turmas_ministradas) values('2010-05-10','Instrutor de bateria','T02'); 
 
 -- a linha abaixo cria a tabela turno
 create table turno(
