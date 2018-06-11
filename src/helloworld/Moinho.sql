@@ -73,7 +73,7 @@ turnoo enum('M','V','N')
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
-insert into turno (turnoo) values ('M');
+
 
 -- a linha abaixo cria a tabela de horario
 create table horario (
