@@ -23,6 +23,9 @@ senha varchar (8) not null,
 perfil varchar(10)
 );
 
+--aumenta o tamanho do campo perfil de 10 para 13
+alter table usuario_sistema modify perfil varchar(13);
+
 -- a linha abaixo faz a inserção da tabela usuario_sistema
 insert into usuario_sistema(login,senha,perfil) values ('admin','admin','administrador'), ('renan','132','diretor');
 
