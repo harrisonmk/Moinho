@@ -85,7 +85,7 @@ responsaveis text,
 email varchar(45),
 profissao varchar(45),
 raca varchar(30),
-religiao varchar(45)
+religiao varchar(45),
 
 
 );
