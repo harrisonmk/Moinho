@@ -79,12 +79,6 @@ sexo enum('M','F'),
 data_nascimento date,
 naturalidade varchar(45),
 nacionalidade varchar(45),
-endereco varchar(45),
-complemento varchar(45),
-bairro varchar(45),
-pais varchar(45),
-uf varchar(45),
-municipio varchar(45),
 escola enum('M','E','F','P'),
 rendafamiliar decimal(6,2),
 responsaveis text,
@@ -93,6 +87,19 @@ profissao varchar(45),
 raca varchar(30),
 religiao varchar(45),
 num_residencia int (4)
+
+);
+
+create table endereco (
+idend int not null primary key auto_increment,
+pais varchar(45),
+unidade_federativa varchar(45),
+municipio varchar(45),
+bairro varchar(45),
+rua varchar(50),
+complemento varchar(50),
+num_da_residencia varchar(50)
+
 
 );
 
