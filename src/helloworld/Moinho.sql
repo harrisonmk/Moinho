@@ -43,6 +43,9 @@ turnoo enum('M','V','N')
 
 );
 
+-- a linha abaixo faz a inserção dos turnos
+insert into turno (turnoo) values ('M'), ('V'),('N');
+
 -- a linha abaixo cria a tabela de horario
 create table horario (
 idhorario int not null primary key auto_increment,
@@ -128,6 +131,9 @@ idturma int not null primary key auto_increment,
 tipoturma enum('B1','B2','B3','I')
 
 );
+
+-- a linha abaixo insere na tabela turma
+insert into turma(tipoturma) values ('B1'),('B2'),('B3'),('I');
 
 -- a linha abaixo cria a tabela participantes
 create table participantes(
