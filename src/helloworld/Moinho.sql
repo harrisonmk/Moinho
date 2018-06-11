@@ -23,6 +23,8 @@ senha varchar (8) not null,
 perfil varchar(10)
 );
 
+-- a linha abaixo faz a inserção da tabela usuario_sistema
+insert into usuario_sistema(login,senha,perfil) values ('admin','admin','administrador'), ('renan','132','diretor');
 
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
