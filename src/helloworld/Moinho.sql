@@ -27,11 +27,11 @@ perfil varchar(10)
 -- aumenta o tamanho do campo perfil de 10 para 13
 alter table usuario_sistema modify perfil varchar(13);
 
--- a linha abaixo faz a inserção da tabela usuario_sistema
+-- a linha abaixo faz a inserÃ§Ã£o da tabela usuario_sistema
 insert into usuario_sistema(login,senha,perfil) values ('admin','admin','administrador');
 insert into usuario_sistema(login,senha,perfil) values ('renan','132','diretor');
-insert into usuario_sistema(login,senha,perfil) values ('João','vgas23','coordenador');
-insert into usuario_sistema(login,senha,perfil) values ('�?gata','cross67','Colaborador');
+insert into usuario_sistema(login,senha,perfil) values ('Joao','vgas23','coordenador');
+insert into usuario_sistema(login,senha,perfil) values ('Hagata','cross67','Colaborador');
 
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
@@ -49,18 +49,18 @@ alter table colaborador add column turmaministradas int not null;
 -- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela turma
 alter table colaborador add foreign key (turmaministradas) references turma(idturma);
 
--- Inserções na tabela de colaboradores
+-- Insercoes na tabela de colaboradores
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values('2010-01-08','Professor de Inglês',1);
+ values('2010-01-08','Professor de Ingles',1);
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
  values('2010-05-10','Instrutor de bateria',2); 
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values ('2005-08-20','Professor de Alemão',3);
+ values ('2005-08-20','Professor de Alemao',3);
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values ('2012-10-3','Instrutor de violão',4);
+ values ('2012-10-3','Instrutor de violao',4);
 
 -- a linha abaixo cria a tabela turno
 create table turno(
@@ -69,7 +69,7 @@ turnoo enum('M','V','N')
 
 )Engine = InnoDB;
 
--- a linha abaixo faz a inserção dos turnos
+-- a linha abaixo faz a inserÃ§Ã£o dos turnos
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
@@ -162,7 +162,10 @@ tipoturma enum('B1','B2','B3','I')
 )Engine = InnoDB;
 
 -- a linha abaixo insere na tabela turma
-insert into turma(tipoturma) values ('B1'),('B2'),('B3'),('I');
+insert into turma(tipoturma) values ('B1');
+insert into turma(tipoturma) values ('B2');
+insert into turma(tipoturma) values ('B3');
+insert into turma(tipoturma) values ('I');
 
 -- a linha abaixo cria a tabela participantes
 create table participantes(
@@ -201,5 +204,5 @@ dataeven date
 -- a linha abaixc cria um campo colaborador_responsavel dentro da table eventos
 alter table eventos add column colaborador_responsavel int not null; 
 
--- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela colaborador
+--a linha abaixo cria uma chave estrangeira e faz referencia com a tabela colaborador
 alter table eventos add foreign key (colaborador_responsavel) references colaborador(idcolaborador);
