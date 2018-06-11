@@ -31,7 +31,7 @@ alter table usuario_sistema modify perfil varchar(13);
 insert into usuario_sistema(login,senha,perfil) values ('admin','admin','administrador');
 insert into usuario_sistema(login,senha,perfil) values ('renan','132','diretor');
 insert into usuario_sistema(login,senha,perfil) values ('João','vgas23','coordenador');
-insert into usuario_sistema(login,senha,perfil) values ('Ágata','cross67','Colaborador');
+insert into usuario_sistema(login,senha,perfil) values ('�?gata','cross67','Colaborador');
 
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
@@ -193,8 +193,13 @@ idevento int not null primary key auto_increment,
 nome varchar(45),
 tipo_evento enum('A','C','R'),
 descricao text,
-responsaveis varchar(45),
 dataeven date
 
 
 )Engine = InnoDB;
+
+-- a linha abaixc cria um campo colaborador_responsavel dentro da table eventos
+alter table eventos add column colaborador_responsavel int not null; 
+
+--a linha abaixo cria uma chave estrangeira e faz referencia com a tabela colaborador
+alter table eventos add foreign key (colaborador_responsavel) references colaborador(idcolaborador);
