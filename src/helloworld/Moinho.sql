@@ -27,7 +27,7 @@ perfil varchar(10)
 -- aumenta o tamanho do campo perfil de 10 para 13
 alter table usuario_sistema modify perfil varchar(13);
 
--- a linha abaixo faz a inserÃ§Ã£o da tabela usuario_sistema
+-- a linha abaixo faz a insercao da tabela usuario_sistema
 insert into usuario_sistema(login,senha,perfil) values ('admin','admin','administrador');
 insert into usuario_sistema(login,senha,perfil) values ('renan','132','diretor');
 insert into usuario_sistema(login,senha,perfil) values ('Joao','vgas23','coordenador');
@@ -92,6 +92,19 @@ telefone varchar(15),
 email varchar(40)
 
 )Engine = InnoDB;
+
+-- Inserts da tabela cadastro universal
+insert into cadastro_universal(nome,data_nascimento,telefone,email) 
+values('Agenor Pereira da Silva','1968-03-29','3232-5824','agen68@hotmail.com');
+
+insert into cadastro_universal(nome,data_nascimento,telefone,email) 
+values('Renan Moreira Andrade','1980-08-12','3234-7865','guerra45@hotmail.com');
+
+insert into cadastro_universal(nome,data_nascimento,telefone,email) 
+values('Joao Paulo Santos Cruz','1978-09-24','3233-3421','bando24@hotmail.com');
+
+insert into cadastro_universal(nome,data_nascimento,telefone,email) 
+values('Hagata Christianne de Souza','1985-04-22','3231-9420','agatinha@hotmail.com');
 
 -- a linha abaixo cria a tabela ficha de avaliacao
 create table ficha_de_avaliacao (
