@@ -116,7 +116,7 @@ insert into cadastro_universal(nome,data_nascimento,telefone,email)
 values('Hagata Christianne de Souza','1985-04-22','3231-9420','agatinha@hotmail.com');
 
 
-drop table ficha_de_avaliacao; 
+
 -- a linha abaixo cria a tabela ficha de avaliacao
 create table ficha_de_avaliacao (
 id_ficha_avaliacao int not null primary key auto_increment,
@@ -170,18 +170,25 @@ values('Edwin Santos','M','1990-02-29','Corumbaense','Brasileiro','P',1800.00,'E
 insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,raca,religiao)
 values('Christiane Chales','F','1995-05-15','Corumbaense','Brasileira','E',1000.00,'ChrisBH@hotmail.com','Parda','Catolica');
 
+-- a linha abaixo cria uma tabela endereco
 create table endereco (
 idend int not null primary key auto_increment,
-pais varchar(45),
 unidade_federativa varchar(45),
 municipio varchar(45),
 bairro varchar(45),
 rua varchar(50),
 complemento varchar(50),
-num_da_residencia varchar(50)
+num_da_residencia varchar(50),
+pais varchar(45)  default 'Brasil'
 
 
 )Engine = InnoDB;
+
+-- inserts da tabela endereco
+insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('MS','corumba','maria leite','maria coelho','perto do san diego','240R','Brasil');
+insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('MS','ladario','cohab','acerola','centro','320P',default);
+insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('RJ','rio de janeiro','botafogo','mineral','centro','280P',default);
+insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('RJ','rio de janeiro','agencia','sao judas tadeu','centro','498P',default);
 
 -- a linha abaixo cria a tabela pais(mae,pai)
 create table pais (
