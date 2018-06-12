@@ -5,6 +5,7 @@
  */
 /**
  * Author:  Harrison
+ * Author: Eduardo Montenegro
  * Created: 06/06/2018
  */
 
@@ -169,6 +170,8 @@ idpais int not null primary key auto_increment,
 nome varchar(45)
 
 )Engine = InnoDB;
+
+
 -- Alterando e adicionando um campo na tabela pais
 alter table pais change column nome nome_pai varchar(45);
 alter table pais add column nome_mae varchar(45);
@@ -220,10 +223,16 @@ ano_de_entrada date
 create table frequencia(
 idfrequencia int not null primary key auto_increment,
 presenca enum ('F','P'),
-data_aula date,
+data_aula timestamp default current_timestamp, -- gera automaticamente a data
 justificar_falta text
 
 )Engine = InnoDB;
+
+-- inserção na tabela frequencia
+insert into frequencia (presenca,justificar_falta) values ('F','estava doente');
+
+
+
 
 -- a linha abaixo cria a tabela eventos
 create table eventos (
@@ -239,5 +248,5 @@ dataeven date
 -- a linha abaixc cria um campo colaborador_responsavel dentro da table eventos
 alter table eventos add column colaborador_responsavel int not null; 
 
---a linha abaixo cria uma chave estrangeira e faz referencia com a tabela colaborador
+-- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela colaborador
 alter table eventos add foreign key (colaborador_responsavel) references colaborador(idcolaborador);
