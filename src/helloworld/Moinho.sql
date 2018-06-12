@@ -221,9 +221,9 @@ abuso text
 )Engine = InnoDB;
 
 -- está linha insere os valores na tabela ocorrencias
-insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(G,'2018/05/15',agrediu o professor);
-insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(M,'2018/06/09',briga com alunos);
-insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(L,'2018/04/25',bagunca em sala);
+insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(G,'2018-05-15',agrediu o professor);
+insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(M,'2018-06-09',briga com alunos);
+insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(L,'2018-04-25',bagunca em sala);
 
 
 -- a linha abaixo cria a tabela turma
@@ -255,7 +255,13 @@ ano_de_entrada date
 
 
 insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
-values(M,8A,Onibus,nenhuma,bom,bolsa escola,'2018/02/13');
+values(M,8ª,Onibus,nenhuma,bom,bolsa escola,'2018-02-13');
+
+insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
+values(D,9ª,Trêm,atrasos nas aulas,regular,bolsa cultura,'2018-05-20');
+
+insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
+values(N_M,6ª,Onibus,má conduta nas aulas,ruim,bolsa estudantil,'2018-08-09');
 
 -- a linha abaixo cria a tabela frequencia
 create table frequencia(
