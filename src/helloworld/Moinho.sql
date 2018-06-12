@@ -6,6 +6,7 @@
 /**
  * Author:  Harrison
  * Author:  Eduardo Montenegro
+ * Author: Edwin Santos
  * Created: 06/06/2018
  */
 
@@ -72,7 +73,7 @@ turnoo enum('M','V','N')
 
 )Engine = InnoDB;
 
--- a linha abaixo faz a inserÃ§Ã£o dos turnos
+-- a linha abaixo faz a inserÃƒÂ§ÃƒÂ£o dos turnos
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
@@ -246,7 +247,7 @@ justificar_falta text
 
 )Engine = InnoDB;
 
--- inser��o na tabela frequencia
+-- inserção na tabela frequencia
 insert into frequencia (presenca,justificar_falta) values ('F','estava doente');
 insert into frequencia (presenca,justificar_falta) values ('P',null);
 
