@@ -73,7 +73,7 @@ turnoo enum('M','V','N')
 
 )Engine = InnoDB;
 
--- a linha abaixo faz a inserÃ§Ã£o dos turnos
+-- a linha abaixo faz a inserÃƒÂ§ÃƒÂ£o dos turnos
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
@@ -220,7 +220,7 @@ abuso text
 
 )Engine = InnoDB;
 
--- est� linha insere os valores na tabela ocorrencias
+-- está linha insere os valores na tabela ocorrencias
 insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(G,'2018/05/15',agrediu o professor);
 insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(M,'2018/06/09',briga com alunos);
 insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(L,'2018/04/25',bagunca em sala);
@@ -253,6 +253,10 @@ ano_de_entrada date
 
 )Engine = InnoDB;
 
+
+insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
+values(M,8A,Onibus,nenhuma,bom,bolsa escola,'2018/02/13');
+
 -- a linha abaixo cria a tabela frequencia
 create table frequencia(
 idfrequencia int not null primary key auto_increment,
@@ -262,7 +266,7 @@ justificar_falta text
 
 )Engine = InnoDB;
 
--- inser��o na tabela frequencia
+-- inserção na tabela frequencia
 insert into frequencia (presenca,justificar_falta) values ('F','estava doente');
 insert into frequencia (presenca,justificar_falta) values ('P',null);
 
