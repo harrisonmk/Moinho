@@ -133,8 +133,8 @@ alter table ficha_de_avaliacao add column Selecionado enum('S','N');
 -- Insercao na tabela Ficha de Avalicao
 insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('3','2','4','1','N');
 insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('4','3','4','5','S');
-insert into ficha_de_avaliacao (avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('5','3','2','4','S');
-insert into ficha_de_avaliacao (avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('1','3','2','3','N');
+insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('5','3','2','4','S');
+insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('1','3','2','3','N');
 
 select * from ficha_de_avaliacao;
 
@@ -155,8 +155,19 @@ profissao varchar(45),
 raca varchar(30),
 religiao varchar(45)
 
-
 )Engine = InnoDB;
+-- Insert da tabela usuario
+insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,profissao,raca,religiao)
+values('Harrison Flores','M','1994-04-24','Corumbaense','Brasileiro','E',1000.00,'mitchellB@hotmail.com','Mecanico','Parda','Catolica');
+
+insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,raca,religiao)
+values('Bianca Arrua','F','1998-05-25','Corumbaense','Brasileira','M',1200.00,'Biancaa@hotmail.com','Branca','Catolica');
+
+insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,profissao,raca,religiao)
+values('Edwin Santos','M','1990-02-29','Corumbaense','Brasileiro','P',1800.00,'EdwinE@hotmail.com','Office Boy','Preto','Catolica');
+
+insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,raca,religiao)
+values('Christiane Chales','F','1995-05-15','Corumbaense','Brasileira','E',1000.00,'ChrisBH@hotmail.com','Parda','Catolica');
 
 create table endereco (
 idend int not null primary key auto_increment,
