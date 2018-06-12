@@ -227,7 +227,7 @@ insert into turma(tipoturma) values ('I');
 -- a linha abaixo cria a tabela participantes
 create table participantes(
 idparticipantes int not null primary key auto_increment,
-status_participante enum('D','M'),
+status_Participante ('D','M','N_M'),
 serie varchar(45),
 tipo_de_transporte varchar(45),
 advertencia text,
