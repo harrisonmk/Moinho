@@ -69,6 +69,7 @@ turnoo enum('M','V','N')
 
 )Engine = InnoDB;
 
+
 -- a linha abaixo faz a inserÃ§Ã£o dos turnos
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
@@ -83,10 +84,13 @@ hora_fim time
 
 )Engine = InnoDB;
 
+
 -- Insercao na tabela horario
 insert into horario(hora_inicio,hora_fim) values ('08:00:00','11:00:00');
 insert into horario(hora_inicio,hora_fim) values ('14:00:00','17:00:00');
 insert into horario(hora_inicio,hora_fim) values ('18:00:00','21:00:00');
+
+
 
 -- a tabela abaixo cria a tabela cadastro_universal
 create table cadastro_universal (
@@ -97,6 +101,7 @@ telefone varchar(15),
 email varchar(40)
 
 )Engine = InnoDB;
+
 
 -- Inserts da tabela cadastro universal
 insert into cadastro_universal(nome,data_nascimento,telefone,email) 
@@ -111,6 +116,8 @@ values('Joao Paulo Santos Cruz','1978-09-24','3233-3421','bando24@hotmail.com');
 insert into cadastro_universal(nome,data_nascimento,telefone,email) 
 values('Hagata Christianne de Souza','1985-04-22','3231-9420','agatinha@hotmail.com');
 
+
+
 -- a linha abaixo cria a tabela ficha de avaliacao
 create table ficha_de_avaliacao (
 id_ficha_avaliacao int not null primary key auto_increment,
@@ -121,14 +128,16 @@ desenvoltura int(10),
 tecnologia int(10)
 
 )Engine = InnoDB;
+
+
 -- Adicionando o campo Selecionado na tabela ficha_de_avaliacao
-alter table ficha_de_avaliacao add column Selecionado('S','N');
+alter table ficha_de_avaliacao add column Selecionado enum('S','N');
 
 -- Insercao na tabela Ficha de Avalicao
-insert into ficha_de_avaliacao values ('2018-02-17',3,2,4,1,'N');
-insert into ficha_de_avaliacao values ('2018-02-20',4,3,4,5,'S');
-insert into ficha_de_avaliacao values ('2018-01-25',5,3,2,4,'S');
-insert into ficha_de_avaliacao values ('2018-02-08',1,3,2,3,'N');
+insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('2018-02-17','3','2','4','1','N');
+insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('2018-02-20','4','3','4','5','S');
+insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('2018-01-25','5','3','2','4','S');
+insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('2018-02-08','1','3','2','3','N');
 
 -- a linha abaixo cria a tabela usuario
 create table usuario (
