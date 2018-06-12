@@ -73,7 +73,7 @@ turnoo enum('M','V','N')
 
 )Engine = InnoDB;
 
--- a linha abaixo faz a insercao dos turnos
+-- a linha abaixo faz a inserÃƒÂ§ÃƒÂ£o dos turnos
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
@@ -190,6 +190,7 @@ nome varchar(45)
 
 )Engine = InnoDB;
 
+
 -- Alterando e adicionando um campo na tabela pais
 alter table pais change column nome nome_pai varchar(45);
 alter table pais add column nome_mae varchar(45);
@@ -210,6 +211,12 @@ abuso text
 
 )Engine = InnoDB;
 
+-- está linha insere os valores na tabela ocorrencias
+insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values('G','15/04/2018','agrediu o professor',' ');
+insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values('M','05/07/2017','briga com alunos',' ');
+insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values('L','26/09/2018','bagunca em sala',' ');
+
+
 -- a linha abaixo cria a tabela turma
 create table turma (
 idturma int not null primary key auto_increment,
@@ -226,7 +233,7 @@ insert into turma(tipoturma) values ('I');
 -- a linha abaixo cria a tabela participantes
 create table participantes(
 idparticipantes int not null primary key auto_increment,
-status_Participante ('D','M'),
+status_Participante ('D','M','N_M'),
 serie varchar(45),
 tipo_de_transporte varchar(45),
 advertencia text,
@@ -236,11 +243,6 @@ ano_de_entrada date
 
 
 )Engine = InnoDB;
-
-
--- Insert na tabela Participantes
-insert into participantes(status_participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada) 
-values();
 
 -- a linha abaixo cria a tabela frequencia
 create table frequencia(
