@@ -5,7 +5,7 @@
  */
 /**
  * Author:  Harrison
- * Author: Eduardo Montenegro
+ * Author:  Eduardo Montenegro
  * Created: 06/06/2018
  */
 
@@ -44,6 +44,8 @@ area_de_atuacao varchar(50)
 
 )Engine = InnoDB;
 
+
+
 -- adiciona um campo ao final da tabela colaborador
 alter table colaborador add column turmaministradas int not null;
 
@@ -70,7 +72,7 @@ turnoo enum('M','V','N')
 
 )Engine = InnoDB;
 
--- a linha abaixo faz a insercao dos turnos
+-- a linha abaixo faz a inserÃ§Ã£o dos turnos
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
@@ -112,31 +114,29 @@ values('Joao Paulo Santos Cruz','1978-09-24','3233-3421','bando24@hotmail.com');
 insert into cadastro_universal(nome,data_nascimento,telefone,email) 
 values('Hagata Christianne de Souza','1985-04-22','3231-9420','agatinha@hotmail.com');
 
+
+drop table ficha_de_avaliacao; 
 -- a linha abaixo cria a tabela ficha de avaliacao
 create table ficha_de_avaliacao (
 id_ficha_avaliacao int not null primary key auto_increment,
-data_avaliacao date,
+data_avaliacao timestamp default current_timestamp, -- gera automaticamente a data,
 avaliacao_musical int(10),
 danca int(10),
 desenvoltura int(10),
 tecnologia int(10)
 
 )Engine = InnoDB;
+
 -- Adicionando o campo Selecionado na tabela ficha_de_avaliacao
-alter table ficha_de_avaliacao add column Selecionado('S','N');
+alter table ficha_de_avaliacao add column Selecionado enum('S','N');
 
 -- Insercao na tabela Ficha de Avalicao
-insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) 
-values ('2018-02-17',3,2,4,1,'N');
+insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('3','2','4','1','N');
+insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('4','3','4','5','S');
+insert into ficha_de_avaliacao (avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('5','3','2','4','S');
+insert into ficha_de_avaliacao (avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('1','3','2','3','N');
 
-insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) 
-values ('2018-02-20',4,3,4,5,'S');
-
-insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado)
-values ('2018-01-25',5,3,2,4,'S');
-
-insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado)
-values ('2018-02-08',1,3,2,3,'N');
+select * from ficha_de_avaliacao;
 
 -- a linha abaixo cria a tabela usuario
 create table usuario (
@@ -154,21 +154,9 @@ email varchar(45),
 profissao varchar(45),
 raca varchar(30),
 religiao varchar(45)
- 
+
+
 )Engine = InnoDB;
--- Inserção na tabela usuario
-insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,profissao,raca,religiao)
-values('Harrison Flores','M','1994-04-24','Corumbaense','Brasileiro','E',1000.00,'mitchellB@hotmail.com','Mecanico','Parda','Catolica');
-
-insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,raca,religiao)
-values('Bianca Arrua','F','1998-05-25','Corumbaense','Brasileira','M',1200.00,'Biancaa@hotmail.com','Branca','Catolica');
-
-insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,profissao,raca,religiao)
-values('Edwin Santos','M','1990-02-29','Corumbaense','Brasileiro','P',1800.00,'EdwinE@hotmail.com','Office Boy','Preto','Catolica');
-
-
-insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,raca,religiao)
-values('Christiane Chales','F','1995-05-15','Corumbaense','Brasileira','E',1000.00,'ChrisBH@hotmail.com','Parda','Catolica');
 
 create table endereco (
 idend int not null primary key auto_increment,
@@ -247,8 +235,9 @@ justificar_falta text
 
 )Engine = InnoDB;
 
--- inserção na tabela frequencia
+-- inser��o na tabela frequencia
 insert into frequencia (presenca,justificar_falta) values ('F','estava doente');
+insert into frequencia (presenca,justificar_falta) values ('P',null);
 
 
 
