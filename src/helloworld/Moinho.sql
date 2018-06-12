@@ -73,7 +73,7 @@ turnoo enum('M','V','N')
 
 )Engine = InnoDB;
 
--- a linha abaixo faz a inserÃƒÂ§ÃƒÂ£o dos turnos
+-- a linha abaixo faz a insercao dos turnos
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
