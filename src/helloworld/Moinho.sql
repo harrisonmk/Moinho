@@ -70,7 +70,7 @@ turnoo enum('M','V','N')
 
 )Engine = InnoDB;
 
--- a linha abaixo faz a inserÃ§Ã£o dos turnos
+-- a linha abaixo faz a insercao dos turnos
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
@@ -123,15 +123,20 @@ tecnologia int(10)
 
 )Engine = InnoDB;
 -- Adicionando o campo Selecionado na tabela ficha_de_avaliacao
-alter table ficha_de_avaliacao add column Selecionado enum('S','N');
+alter table ficha_de_avaliacao add column Selecionado('S','N');
 
 -- Insercao na tabela Ficha de Avalicao
-insert into ficha_de_avaliacao values ('2018-02-17',3,2,4,1,'N');
-insert into ficha_de_avaliacao values ('2018-02-20',4,3,4,5,'S');
-insert into ficha_de_avaliacao values ('2018-01-25',5,3,2,4,'S');
-insert into ficha_de_avaliacao values ('2018-02-08',1,3,2,3,'N');
+insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) 
+values ('2018-02-17',3,2,4,1,'N');
 
-select * from ficha_de_avaliacao;
+insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) 
+values ('2018-02-20',4,3,4,5,'S');
+
+insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado)
+values ('2018-01-25',5,3,2,4,'S');
+
+insert into ficha_de_avaliacao(data_avaliacao,avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado)
+values ('2018-02-08',1,3,2,3,'N');
 
 -- a linha abaixo cria a tabela usuario
 create table usuario (
@@ -230,12 +235,11 @@ justificar_falta text
 
 )Engine = InnoDB;
 
--- inser��o na tabela frequencia
+-- inserção na tabela frequencia
 insert into frequencia (presenca,justificar_falta) values ('F','estava doente');
-insert into frequencia (presenca,justificar_falta) values ('P',null);
 
 
-select * from frequencia;
+
 
 -- a linha abaixo cria a tabela eventos
 create table eventos (
