@@ -73,7 +73,7 @@ turnoo enum('M','V','N')
 
 )Engine = InnoDB;
 
--- a linha abaixo faz a inserÃƒÂ§ÃƒÂ£o dos turnos
+-- a linha abaixo faz a inserÃ§Ã£o dos turnos
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
@@ -170,18 +170,27 @@ values('Edwin Santos','M','1990-02-29','Corumbaense','Brasileiro','P',1800.00,'E
 insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,raca,religiao)
 values('Christiane Chales','F','1995-05-15','Corumbaense','Brasileira','E',1000.00,'ChrisBH@hotmail.com','Parda','Catolica');
 
+
+-- a linha abaixo adiciona a tabela endereco
 create table endereco (
+
 idend int not null primary key auto_increment,
-pais varchar(45),
 unidade_federativa varchar(45),
 municipio varchar(45),
 bairro varchar(45),
 rua varchar(50),
 complemento varchar(50),
-num_da_residencia varchar(50)
+num_da_residencia varchar(50),
+pais varchar(45)  default 'Brasil'
 
 
 )Engine = InnoDB;
+
+-- insere dados na tabela endereco
+insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('MS','corumba','maria leite','maria coelho','perto do san diego','240R','Brasil');
+insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('MS','ladario','cohab','acerola','centro','320P',default);
+insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('RJ','rio de janeiro','botafogo','mineral','centro','280P',default);
+insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('RJ','rio de janeiro','agencia','sao judas tadeu','centro','498P',default);
 
 -- a linha abaixo cria a tabela pais(mae,pai)
 create table pais (
@@ -211,7 +220,7 @@ abuso text
 
 )Engine = InnoDB;
 
--- está linha insere os valores na tabela ocorrencias
+-- est� linha insere os valores na tabela ocorrencias
 insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(G,'2018/05/15',agrediu o professor);
 insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(M,'2018/06/09',briga com alunos);
 insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(L,'2018/04/25',bagunca em sala);
@@ -253,7 +262,7 @@ justificar_falta text
 
 )Engine = InnoDB;
 
--- inserção na tabela frequencia
+-- inser��o na tabela frequencia
 insert into frequencia (presenca,justificar_falta) values ('F','estava doente');
 insert into frequencia (presenca,justificar_falta) values ('P',null);
 
