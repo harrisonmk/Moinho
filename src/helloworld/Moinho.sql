@@ -237,6 +237,11 @@ ano_de_entrada date
 
 )Engine = InnoDB;
 
+
+-- Insert na tabela Participantes
+insert into participantes(status_participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada) 
+values();
+
 -- a linha abaixo cria a tabela frequencia
 create table frequencia(
 idfrequencia int not null primary key auto_increment,
