@@ -190,7 +190,6 @@ nome varchar(45)
 
 )Engine = InnoDB;
 
-
 -- Alterando e adicionando um campo na tabela pais
 alter table pais change column nome nome_pai varchar(45);
 alter table pais add column nome_mae varchar(45);
