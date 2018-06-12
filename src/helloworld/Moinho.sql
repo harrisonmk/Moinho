@@ -83,6 +83,11 @@ hora_fim time
 
 )Engine = InnoDB;
 
+-- Insercao na tabela horario
+insert into horario(hora_inicio,hora_fim) values ('08:00:00','11:00:00');
+insert into horario(hora_inicio,hora_fim) values ('14:00:00','17:00:00');
+insert into horario(hora_inicio,hora_fim) values ('18:00:00','21:00:00');
+
 -- a tabela abaixo cria a tabela cadastro_universal
 create table cadastro_universal (
 idcadastro int not null primary key auto_increment,
@@ -116,6 +121,14 @@ desenvoltura int(10),
 tecnologia int(10)
 
 )Engine = InnoDB;
+-- Adicionando o campo Selecionado na tabela ficha_de_avaliacao
+alter table ficha_de_avaliacao add column Selecionado('S','N');
+
+-- Insercao na tabela Ficha de Avalicao
+insert into ficha_de_avaliacao values ('2018-02-17',3,2,4,1,'N');
+insert into ficha_de_avaliacao values ('2018-02-20',4,3,4,5,'S');
+insert into ficha_de_avaliacao values ('2018-01-25',5,3,2,4,'S');
+insert into ficha_de_avaliacao values ('2018-02-08',1,3,2,3,'N');
 
 -- a linha abaixo cria a tabela usuario
 create table usuario (
