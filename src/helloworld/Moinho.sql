@@ -204,5 +204,5 @@ dataeven date
 -- a linha abaixc cria um campo colaborador_responsavel dentro da table eventos
 alter table eventos add column colaborador_responsavel int not null; 
 
---a linha abaixo cria uma chave estrangeira e faz referencia com a tabela colaborador
+-- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela colaborador
 alter table eventos add foreign key (colaborador_responsavel) references colaborador(idcolaborador);
