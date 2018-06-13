@@ -45,8 +45,6 @@ area_de_atuacao varchar(50)
 
 )Engine = InnoDB;
 
-
-
 -- adiciona um campo ao final da tabela colaborador
 alter table colaborador add column turmaministradas int not null;
 
@@ -73,6 +71,7 @@ turnoo enum('M','V','N')
 
 )Engine = InnoDB;
 
+-- a linha abaixo faz a insercao dos turnos
 -- a linha abaixo faz a inserÃƒÂ§ÃƒÂ£o dos turnos
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
@@ -242,7 +241,7 @@ insert into turma(tipoturma) values ('I');
 -- a linha abaixo cria a tabela participantes
 create table participantes(
 idparticipantes int not null primary key auto_increment,
-status_Participante ('D','M','N_M'),
+status_Participante ENUM('D','M'),
 serie varchar(45),
 tipo_de_transporte varchar(45),
 advertencia text,
@@ -253,15 +252,32 @@ ano_de_entrada date
 
 )Engine = InnoDB;
 
+-- Alterando o Campo Status do Participante
+alter table participante modify status_participante ENUM('D','M','N_M')
+
+
+-- Insert na tabela Participantes
+insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
+values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014');
+
+insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
+values('M','S�timo Ano','Onibus','Regular','Bolsa Familia','2013');
+
+insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
+values('D','Oitavo Ano','Nao ha','Bom','Nenhum','2012');
+
+insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
+values('M','Quarto Ano','Onibus','Ruim','Bolsa Familia','2017');
+
 
 insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
-values(M,8ª,Onibus,nenhuma,bom,bolsa escola,'2018-02-13');
+values('M','8A','Onibus','nenhuma','bom','bolsa escola','2018-02-13');
 
 insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
-values(D,9ª,Trêm,atrasos nas aulas,regular,bolsa cultura,'2018-05-20');
+values('D','9A','Trem','atrasos nas aulas','regular','bolsa cultura','2018-05-20');
 
 insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
-values(N_M,6ª,Onibus,má conduta nas aulas,ruim,bolsa estudantil,'2018-08-09');
+values('N_M','6A','Onibus','ma conduta nas aulas','ruim','bolsa estudantil','2018-08-09');
 
 -- a linha abaixo cria a tabela frequencia
 create table frequencia(
@@ -296,3 +312,10 @@ alter table eventos add column colaborador_responsavel int not null;
 
 -- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela colaborador
 alter table eventos add foreign key (colaborador_responsavel) references colaborador(idcolaborador);
+
+-- Fazendo inser��es na tabela eventos
+insert into eventos(nome,tipo_evento,descricao,dataeven) 
+values('Festa Junina Cultural','A','Festa Junina que ser� realizada pelo pessoal do Moinho Cultural, no Porto Geral','2018-06-18',2);
+
+insert into eventos(nome,tipo_evento,descricao,dataeven) 
+values('Moinho Inconcert','R','Concerto Musical realizado por todos os participantes do Moinho Cultural','2018-04-29',4);
