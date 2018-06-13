@@ -71,16 +71,16 @@ alter table colaborador add foreign key (id_cadastro) references cadastro_univer
 
 -- Insercoes na tabela de colaboradores
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values('2010-01-08','Professor de Ingles',1,2,3);
+ values('2010-01-08','Professor de Ingles',1,2,3,4);
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values('2010-05-10','Instrutor de bateria',2,3,1); 
+ values('2010-05-10','Instrutor de bateria',2,3,1,2); 
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values ('2005-08-20','Professor de Alemao',3,1,2);
+ values ('2005-08-20','Professor de Alemao',3,1,2,1);
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values ('2012-10-3','Instrutor de violao',4);
+ values ('2012-10-3','Instrutor de violao',4,3);
 
 -- a linha abaixo cria a tabela turno
 create table turno(
