@@ -253,8 +253,10 @@ ano_de_entrada date
 )Engine = InnoDB;
 
 -- Alterando o Campo Status do Participante
-alter table participante modify status_participante ENUM('D','M','N_M')
+alter table participantes modify status_participante ENUM('D','M','N_M')
 
+-- Adicionando um Campo na tabela Participante
+alter table participantes add column idficha INT not null;
 
 -- Insert na tabela Participantes
 insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
