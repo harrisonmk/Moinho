@@ -51,6 +51,10 @@ alter table colaborador add column turmaministradas int not null;
 -- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela turma
 alter table colaborador add foreign key (turmaministradas) references turma(idturma);
 
+-- Adicionando um campo na tabela Colaborador
+alter table colaborador add column horario_de_aula int not null;
+
+
 -- Insercoes na tabela de colaboradores
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
  values('2010-01-08','Professor de Ingles',1);
