@@ -275,6 +275,7 @@ justificar_falta text
 -- inserção na tabela frequencia
 insert into frequencia (presenca,justificar_falta) values ('F','estava doente');
 insert into frequencia (presenca,justificar_falta) values ('P',null);
+insert into frequencia (presenca,justificar_falta) values ('F','fui ao medico');
 
 
 
