@@ -264,6 +264,9 @@ alter table participantes add column idusuario INT not null;
 -- Fazendo uma ligacao de Participantes e Ficha de avaliacao
  alter table participantes add foreign key idficha references ficha_de_avaliacao(id_ficha_avaliacao);
 
+-- Fazendo uma ligacao de Participantes e Usuario
+ alter table participantes add foreign key idusuario references usuario(idusu);
+
 -- Insert na tabela Participantes
 insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
 values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014');
