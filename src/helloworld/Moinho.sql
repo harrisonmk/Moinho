@@ -59,13 +59,13 @@ alter table colaborador add foreign key (horario_de_aula) references horario(idh
 
 -- Insercoes na tabela de colaboradores
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values('2010-01-08','Professor de Ingles',1);
+ values('2010-01-08','Professor de Ingles',1,2);
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values('2010-05-10','Instrutor de bateria',2); 
+ values('2010-05-10','Instrutor de bateria',2,3); 
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values ('2005-08-20','Professor de Alemao',3);
+ values ('2005-08-20','Professor de Alemao',3,1);
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
  values ('2012-10-3','Instrutor de violao',4);
