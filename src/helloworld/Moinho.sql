@@ -258,6 +258,9 @@ alter table participantes modify status_participante ENUM('D','M','N_M')
 -- Adicionando um Campo na tabela Participante
 alter table participantes add column idficha INT not null;
 
+-- Adicionando mais um Campo na tabela Participante
+alter table participantes add column idusuario INT not null;
+
 -- Insert na tabela Participantes
 insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
 values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014');
