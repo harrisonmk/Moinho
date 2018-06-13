@@ -54,6 +54,8 @@ alter table colaborador add foreign key (turmaministradas) references turma(idtu
 -- Adicionando um campo na tabela Colaborador
 alter table colaborador add column horario_de_aula int not null;
 
+-- Fazendo um ligacao entre Colaborador e Horario
+alter table colaborador add foreign key (horario_de_aula) references horario(idhorario);
 
 -- Insercoes na tabela de colaboradores
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
