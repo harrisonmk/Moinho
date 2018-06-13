@@ -269,20 +269,20 @@ alter table participantes add column idusuario INT not null;
 
 -- Insert na tabela Participantes
 insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
-values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014');
+values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014',1,1);
 
 insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
-values('M','Sétimo Ano','Onibus','Regular','Bolsa Familia','2013');
+values('M','Sétimo Ano','Onibus','Regular','Bolsa Familia','2013',2,2);
 
 insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
-values('D','Oitavo Ano','Nao ha','Bom','Nenhum','2012');
+values('D','Oitavo Ano','Nao ha','Bom','Nenhum','2012',3,3);
 
 insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
-values('M','Quarto Ano','Onibus','Ruim','Bolsa Familia','2017');
+values('M','Quarto Ano','Onibus','Ruim','Bolsa Familia','2017',4,4);
 
 
 insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
-values('M','8A','Onibus','nenhuma','bom','bolsa escola','2018-02-13');
+values('M','8A','Onibus','nenhuma','bom','bolsa escola','2018-02-13',);
 
 insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
 values('D','9A','Trem','atrasos nas aulas','regular','bolsa cultura','2018-05-20');
