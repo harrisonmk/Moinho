@@ -10,7 +10,6 @@
  * Created: 06/06/2018
  */
 
-
 -- a linha abaixo cria o banco de dados moinho
 create database moinho;
 
@@ -35,6 +34,19 @@ insert into usuario_sistema(login,senha,perfil) values ('renan','132','diretor')
 insert into usuario_sistema(login,senha,perfil) values ('Joao','vgas23','coordenador');
 insert into usuario_sistema(login,senha,perfil) values ('Hagata','cross67','Colaborador');
 
+-- a linha abaixo cria a tabela turma
+create table turma (
+idturma int not null primary key auto_increment,
+tipoturma enum('B1','B2','B3','I')
+
+)Engine = InnoDB;
+
+-- a linha abaixo insere na tabela turma
+insert into turma(tipoturma) values ('B1');
+insert into turma(tipoturma) values ('B2');
+insert into turma(tipoturma) values ('B3');
+insert into turma(tipoturma) values ('I');
+
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
 
@@ -51,36 +63,18 @@ alter table colaborador add column turmaministradas int not null;
 -- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela turma
 alter table colaborador add foreign key (turmaministradas) references turma(idturma);
 
--- Adicionando um campo na tabela Colaborador
-alter table colaborador add column horario_de_aula int not null;
-
--- Fazendo um ligacao entre Colaborador e Horario
-alter table colaborador add foreign key (horario_de_aula) references horario(idhorario);
-
--- Adicionando mais um campo na tabela Colaborador
-alter table colaborador add column idturno int not null;
-
--- Fazendo ligação entre Colaborador e Turno
-alter table colaborador add foreign key (idturno) references turno(idturno);
-
--- Adicionando mais um campo na tabela Colaborador
-alter table colaborador add column id_cadastro int not null;
-
--- Fazendo ligação entre Colaborador e Cadastro Universal
-alter table colaborador add foreign key (id_cadastro) references cadastro_universal(idcadastro);
-
 -- Insercoes na tabela de colaboradores
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values('2010-01-08','Professor de Ingles',1,2,3,4);
+ values('2010-01-08','Professor de Ingles',1);
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values('2010-05-10','Instrutor de bateria',2,3,1,2); 
+ values('2010-05-10','Instrutor de bateria',2); 
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values ('2005-08-20','Professor de Alemao',3,1,2,1);
+ values ('2005-08-20','Professor de Alemao',3);
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values ('2012-10-3','Instrutor de violao',4,3);
+ values ('2012-10-3','Instrutor de violao',4);
 
 -- a linha abaixo cria a tabela turno
 create table turno(
@@ -133,7 +127,7 @@ insert into cadastro_universal(nome,data_nascimento,telefone,email)
 values('Hagata Christianne de Souza','1985-04-22','3231-9420','agatinha@hotmail.com');
 
 
-drop table ficha_de_avaliacao; 
+
 -- a linha abaixo cria a tabela ficha de avaliacao
 create table ficha_de_avaliacao (
 id_ficha_avaliacao int not null primary key auto_increment,
@@ -174,18 +168,20 @@ raca varchar(30),
 religiao varchar(45)
 
 )Engine = InnoDB;
+
+
 -- Insert da tabela usuario
 insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,profissao,raca,religiao)
-values('Harrison Flores','M','1994-04-24','Corumbaense','Brasileiro','E',1000.00,'mitchellB@hotmail.com','Mecanico','Parda','Catolica');
+values('Harrison Flores','M','1994-04-24','Corumbaense','Brasileiro','E','1000.00','mitchellB@hotmail.com','Mecanico','Parda','Catolica');
 
 insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,raca,religiao)
-values('Bianca Arrua','F','1998-05-25','Corumbaense','Brasileira','M',1200.00,'Biancaa@hotmail.com','Branca','Catolica');
+values('Bianca Arrua','F','1998-05-25','Corumbaense','Brasileira','M','1200.00','Biancaa@hotmail.com','Branca','Catolica');
 
 insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,profissao,raca,religiao)
-values('Edwin Santos','M','1990-02-29','Corumbaense','Brasileiro','P',1800.00,'EdwinE@hotmail.com','Office Boy','Preto','Catolica');
+values('Edwin Santos','M','1990-02-28','Corumbaense','Brasileiro','P','1800.00','EdwinE@hotmail.com','Office Boy','Preto','Catolica');
 
 insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,raca,religiao)
-values('Christiane Chales','F','1995-05-15','Corumbaense','Brasileira','E',1000.00,'ChrisBH@hotmail.com','Parda','Catolica');
+values('Christiane Chales','F','1995-05-15','Corumbaense','Brasileira','E','1000.00','ChrisBH@hotmail.com','Parda','Catolica');
 
 
 -- a linha abaixo adiciona a tabela endereco
@@ -208,6 +204,7 @@ insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da
 insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('MS','ladario','cohab','acerola','centro','320P',default);
 insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('RJ','rio de janeiro','botafogo','mineral','centro','280P',default);
 insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da_residencia,pais) values ('RJ','rio de janeiro','agencia','sao judas tadeu','centro','498P',default);
+
 
 -- a linha abaixo cria a tabela pais(mae,pai)
 create table pais (
@@ -238,23 +235,12 @@ abuso text
 )Engine = InnoDB;
 
 -- estÃ¡ linha insere os valores na tabela ocorrencias
-insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(G,'2018-05-15',agrediu o professor);
-insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(M,'2018-06-09',briga com alunos);
-insert into ocorrencias(advertencia,data_ocorrencia,motivo,abuso) values(L,'2018-04-25',bagunca em sala);
+insert into ocorrencias(advertencia,data_ocorencia,motivo) values('G','2018-05-15','agrediu o professor');
+insert into ocorrencias(advertencia,data_ocorencia,motivo) values('M','2018-06-09','briga com alunos');
+insert into ocorrencias(advertencia,data_ocorencia,motivo) values('L','2018-04-25','bagunca em sala');
 
 
--- a linha abaixo cria a tabela turma
-create table turma (
-idturma int not null primary key auto_increment,
-tipoturma enum('B1','B2','B3','I')
 
-)Engine = InnoDB;
-
--- a linha abaixo insere na tabela turma
-insert into turma(tipoturma) values ('B1');
-insert into turma(tipoturma) values ('B2');
-insert into turma(tipoturma) values ('B3');
-insert into turma(tipoturma) values ('I');
 
 -- a linha abaixo cria a tabela participantes
 create table participantes(
@@ -271,13 +257,13 @@ ano_de_entrada date
 )Engine = InnoDB;
 
 -- Alterando o Campo Status do Participante
-alter table participantes modify status_participante ENUM('D','M','N_M')
+alter table participantes modify status_participante ENUM('D','M','N_M');
 
 -- Adicionando um Campo na tabela Participante
-alter table participantes add column idficha INT not null;
+alter table participantes add column idficha INT;
 
 -- Adicionando mais um Campo na tabela Participante
-alter table participantes add column idusuario INT not null;
+alter table participantes add column idusuario INT;
 
 -- Fazendo uma ligacao de Participantes e Ficha de avaliacao
  alter table participantes add foreign key (idficha) references ficha_de_avaliacao(id_ficha_avaliacao);
@@ -286,27 +272,27 @@ alter table participantes add column idusuario INT not null;
  alter table participantes add foreign key (idusuario) references usuario(idusu);
 
 -- Insert na tabela Participantes
-insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
-values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014',1,1);
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario) 
+values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','1','1');
 
-insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
-values('M','Sétimo Ano','Onibus','Regular','Bolsa Familia','2013',2,2);
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario) 
+values('M','Sétimo Ano','Onibus','Regular','Bolsa Familia','2013-10-23','2','2');
 
-insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
-values('D','Oitavo Ano','Nao ha','Bom','Nenhum','2012',3,3);
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario)  
+values('D','Oitavo Ano','Nao ha','Bom','Nenhum','2012-11-11','3','3');
 
-insert into participantes(status_participante,serie,tipo_de_transporte,desempenho,beneficio_social,ano_de_entrada) 
-values('M','Quarto Ano','Onibus','Ruim','Bolsa Familia','2017',4,4);
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario) 
+values('M','Quarto Ano','Onibus','Ruim','Bolsa Familia','2017-07-17','4','4');
 
 
-insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
-values('M','8A','Onibus','nenhuma','bom','bolsa escola','2018-02-13',);
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada) 
+values('M','8A','Onibus','bom','bolsa escola','2018-02-13');
 
-insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
-values('D','9A','Trem','atrasos nas aulas','regular','bolsa cultura','2018-05-20');
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada) 
+values('D','9A','Trem','regular','bolsa cultura','2018-05-20');
 
-insert into participantes(status_Participante,serie,tipo_de_transporte,advertencia,desempenho,beneficio_social,ano_de_entrada)
-values('N_M','6A','Onibus','ma conduta nas aulas','ruim','bolsa estudantil','2018-08-09');
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada) 
+values('N_M','6A','Onibus','ruim','bolsa estudantil','2018-08-09');
 
 -- a linha abaixo cria a tabela frequencia
 create table frequencia(
@@ -343,8 +329,8 @@ alter table eventos add column colaborador_responsavel int not null;
 alter table eventos add foreign key (colaborador_responsavel) references colaborador(idcolaborador);
 
 -- Fazendo inserções na tabela eventos
-insert into eventos(nome,tipo_evento,descricao,dataeven) 
-values('Festa Junina Cultural','A','Festa Junina que será realizada pelo pessoal do Moinho Cultural, no Porto Geral','2018-06-18',2);
+insert into eventos(nome,tipo_evento,descricao,dataeven,colaborador_responsavel) 
+values('Festa Junina Cultural','A','Festa Junina que será realizada pelo pessoal do Moinho Cultural, no Porto Geral','2018-06-18','2');
 
-insert into eventos(nome,tipo_evento,descricao,dataeven) 
-values('Moinho Inconcert','R','Concerto Musical realizado por todos os participantes do Moinho Cultural','2018-04-29',4);
+insert into eventos(nome,tipo_evento,descricao,dataeven,colaborador_responsavel) 
+values('Moinho Inconcert','R','Concerto Musical realizado por todos os participantes do Moinho Cultural','2018-04-29','4');
