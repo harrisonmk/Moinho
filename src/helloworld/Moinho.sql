@@ -360,9 +360,14 @@ select u.nome as 'Participante',f.Selecionado from participantes as p inner join
 
 
 
-select horario.hora_inicio as 'Inicio',horario.hora_fim as 'Fim',turma.atividades_realizadas as 'Atividades Realizadas', eventos.nome as 'Evento' from turma inner join horario on turma.horario_aulas=horario.idhorario inner join colaborador on colaborador.turmaministradas = turma.idturma inner join eventos on eventos.colaborador_responsavel=colaborador.idcolaborador;
+select horario.hora_inicio as 'Inicio',horario.hora_fim as 'Fim',turma.atividades_realizadas as 'Atividades Realizadas', 
+eventos.nome as 'Evento' from turma inner join horario on turma.horario_aulas=horario.idhorario inner join colaborador 
+on colaborador.turmaministradas = turma.idturma inner join eventos on
+ eventos.colaborador_responsavel=colaborador.idcolaborador;
 
 
 
-select frequencia.presenca,count(frequencia.presenca) as 'Quantidade de Faltas',usuario.nome as 'Nome' from participantes inner join usuario on participantes.idusuario=usuario.idusu inner join frequencia on participantes.freq_part=frequencia.idfrequencia group by frequencia.presenca having frequencia.presenca='F';
+select frequencia.presenca,count(frequencia.presenca) as 'Quantidade de Faltas',usuario.nome as 'Nome' from participantes inner join 
+usuario on participantes.idusuario=usuario.idusu inner join frequencia on 
+participantes.freq_part=frequencia.idfrequencia group by frequencia.presenca having frequencia.presenca='F';
 
