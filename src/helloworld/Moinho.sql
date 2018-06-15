@@ -316,6 +316,12 @@ alter table participantes add column idusuario INT;
 -- Fazendo uma ligacao de Participantes e Usuario
  alter table participantes add foreign key (idusuario) references usuario(idusu);
 
+-- Adicionando mais o campo id_frequencia na tabela Participantes 
+alter table participantes add column id_frequencia int not null;
+
+-- Fazendo ligacao de Participantes com frequencia
+alter table participantes add foreign key (id_frequencia) references frenquencia(idfrenquencia);
+
 -- Insert na tabela Participantes
 insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario) 
 values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','1','1');
