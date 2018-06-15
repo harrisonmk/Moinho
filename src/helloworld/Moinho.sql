@@ -309,6 +309,12 @@ alter table participantes add column ende_local int not null;
 -- Fazendo ligação de Participantes com Endereco
 alter table participantes add foreign key (ende_local) references endereco(idend);
 
+-- Inserindo na tabela Participantes;
+update participantes set ende_local ='1' where idparticipantes ='1';
+update participantes set ende_local ='2' where idparticipantes ='2';
+update participantes set ende_local ='3' where idparticipantes ='3';
+update participantes set ende_local ='4' where idparticipantes ='4';
+
 -- Insert na tabela Participantes
 insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario,freq_part) 
 values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','1','1','1');
