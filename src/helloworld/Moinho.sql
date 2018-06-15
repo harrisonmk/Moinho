@@ -58,6 +58,12 @@ update turma set atividades_realizadas='ensinar a dancar' where idturma ='2';
 update turma set atividades_realizadas='ensinar teatro' where idturma ='3';
 update turma set atividades_realizadas='ensinar tocar violino' where idturma ='4';
 
+-- Adicionando campo na tabela turma
+alter table turma add column colaborador int not null;
+
+-- Fazendo ligação entre colaborador e turma
+alter table turma add foreign key (colaborador) references colaborador(idcolaborador);
+
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
 
