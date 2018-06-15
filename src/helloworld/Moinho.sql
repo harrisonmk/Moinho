@@ -70,6 +70,14 @@ update turma set colaborador = 3 where idturma = '2';
 update turma set colaborador = 2 where idturma = '3';
 update turma set colaborador = 1 where idturma = '4';
 
+-- Adicionando mais um campo na tabela turma
+alter table turma add column horario_de_aula int not null;
+
+-- Fazendo ligação de turma com horario
+alter table turma add foreign key (horario_de_aula) references horario(idhorario);
+
+
+
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
 
