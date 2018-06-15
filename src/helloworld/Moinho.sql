@@ -76,7 +76,10 @@ alter table turma add column horario_de_aula int not null;
 -- Fazendo ligação de turma com horario
 alter table turma add foreign key (horario_de_aula) references horario(idhorario);
 
-
+-- Fazendo inserções com update na tabela turma
+update turma set horario_de_aula = 1 where idturma = '1';
+update turma set horario_de_aula = 2 where idturma = '2';
+update turma set horario_de_aula = 3 where idturma = '3';
 
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
