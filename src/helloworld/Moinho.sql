@@ -41,11 +41,22 @@ tipoturma enum('B1','B2','B3','I')
 
 )Engine = InnoDB;
 
+
+
 -- a linha abaixo insere na tabela turma
 insert into turma(tipoturma) values ('B1');
 insert into turma(tipoturma) values ('B2');
 insert into turma(tipoturma) values ('B3');
 insert into turma(tipoturma) values ('I');
+
+-- criação de um campo atividades dentro da tabela turma
+alter table turma add column atividades_realizadas text not null;
+
+
+update turma set atividades_realizadas='ensinar tocar violao' where idturma ='1';
+update turma set atividades_realizadas='ensinar a dancar' where idturma ='2';
+update turma set atividades_realizadas='ensinar teatro' where idturma ='3';
+update turma set atividades_realizadas='ensinar tocar violino' where idturma ='4';
 
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
@@ -65,16 +76,16 @@ alter table colaborador add foreign key (turmaministradas) references turma(idtu
 
 -- Insercoes na tabela de colaboradores
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values('2010-01-08','Professor de Ingles',1);
+ values('2010-01-08','Professor de Ingles','1');
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values('2010-05-10','Instrutor de bateria',2); 
+ values('2010-05-10','Instrutor de bateria','2'); 
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values ('2005-08-20','Professor de Alemao',3);
+ values ('2005-08-20','Professor de Alemao','3');
 
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
- values ('2012-10-3','Instrutor de violao',4);
+ values ('2012-10-3','Instrutor de violao','4');
 
 -- a linha abaixo cria a tabela turno
 create table turno(
@@ -294,6 +305,8 @@ values('D','9A','Trem','regular','bolsa cultura','2018-05-20');
 insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada) 
 values('N_M','6A','Onibus','ruim','bolsa estudantil','2018-08-09');
 
+
+
 -- a linha abaixo cria a tabela frequencia
 create table frequencia(
 idfrequencia int not null primary key auto_increment,
@@ -334,3 +347,7 @@ values('Festa Junina Cultural','A','Festa Junina que será realizada pelo pessoal
 
 insert into eventos(nome,tipo_evento,descricao,dataeven,colaborador_responsavel) 
 values('Moinho Inconcert','R','Concerto Musical realizado por todos os participantes do Moinho Cultural','2018-04-29','4');
+
+
+select u.nome as 'Participante',f.Selecionado from participantes as p inner join ficha_de_avaliacao f on p.idficha=f.id_ficha_avaliacao inner join usuario u on p.idusuario=u.idusu where f.Selecionado='N';
+
