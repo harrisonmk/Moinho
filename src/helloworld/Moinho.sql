@@ -303,6 +303,12 @@ alter table participantes add column idusuario INT;
  -- faz ligação de participante com frequencia
  alter table participantes add foreign key (freq_part) references frequencia(idfrequencia);
 
+-- Criando um campo para a tabela participantes
+alter table participantes add column ende_local int not null;
+
+-- Fazendo ligação de Participantes com Endereco
+alter table participantes add foreign key (ende_local) references endereco(idend);
+
 -- Insert na tabela Participantes
 insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario,freq_part) 
 values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','1','1','1');
@@ -367,7 +373,9 @@ on colaborador.turmaministradas = turma.idturma inner join eventos on
 
 
 
-select frequencia.presenca,count(frequencia.presenca) as 'Quantidade de Faltas',usuario.nome as 'Nome' from participantes inner join 
-usuario on participantes.idusuario=usuario.idusu inner join frequencia on 
+select frequencia.presenca,count(frequencia.presenca) as 'Quantidade de Faltas',usuario.nome as 'Nome' from participantes
+inner join usuario on participantes.idusuario=usuario.idusu inner join frequencia on 
 participantes.freq_part=frequencia.idfrequencia group by frequencia.presenca having frequencia.presenca='F';
 
+
+select usuario.sexo,usuario.data_nascimento,usuario.naturalidade
