@@ -64,6 +64,12 @@ alter table turma add column colaborador int not null;
 -- Fazendo ligação entre colaborador e turma
 alter table turma add foreign key (colaborador) references colaborador(idcolaborador);
 
+-- Fazendo insercoes com update na tabela turma 
+update turma set colaborador = 4 where idturma = '1';
+update turma set colaborador = 3 where idturma = '2';
+update turma set colaborador = 2 where idturma = '3';
+update turma set colaborador = 1 where idturma = '4';
+
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
 
