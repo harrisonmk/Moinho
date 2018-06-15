@@ -22,11 +22,10 @@ create table usuario_sistema (
 id int not null primary key auto_increment,
 login varchar(45) not null,
 senha varchar (8) not null,
-perfil varchar(10)
+perfil varchar(13)
 )Engine = InnoDB;
 
--- aumenta o tamanho do campo perfil de 10 para 13
-alter table usuario_sistema modify perfil varchar(13);
+
 
 -- a linha abaixo faz a insercao da tabela usuario_sistema
 insert into usuario_sistema(login,senha,perfil) values ('admin','admin','administrador');
@@ -34,63 +33,40 @@ insert into usuario_sistema(login,senha,perfil) values ('renan','132','diretor')
 insert into usuario_sistema(login,senha,perfil) values ('Joao','vgas23','coordenador');
 insert into usuario_sistema(login,senha,perfil) values ('Hagata','cross67','Colaborador');
 
+
+-- a linha abaixo cria a tabela de horario
+create table horario (
+idhorario int not null primary key auto_increment,
+hora_inicio time,
+hora_fim time
+
+)Engine = InnoDB;
+
+-- Insercao na tabela horario
+insert into horario(hora_inicio,hora_fim) values ('08:00:00','11:00:00');
+insert into horario(hora_inicio,hora_fim) values ('14:00:00','17:00:00');
+insert into horario(hora_inicio,hora_fim) values ('18:00:00','21:00:00');
+insert into horario(hora_inicio,hora_fim) values ('20:00:00','22:00:00');
+
+
 -- a linha abaixo cria a tabela turma
 create table turma (
 idturma int not null primary key auto_increment,
-tipoturma enum('B1','B2','B3','I')
-
+tipoturma enum('B1','B2','B3','I'),
+atividades_realizadas text not null,
+horario_aulas int,
+foreign key (horario_aulas) references horario (idhorario)
 )Engine = InnoDB;
 
 
 
 -- a linha abaixo insere na tabela turma
-insert into turma(tipoturma) values ('B1');
-insert into turma(tipoturma) values ('B2');
-insert into turma(tipoturma) values ('B3');
-insert into turma(tipoturma) values ('I');
-
--- criação de um campo atividades dentro da tabela turma
-alter table turma add column atividades_realizadas text not null;
+insert into turma(tipoturma,atividades_realizadas,horario_aulas) values ('B1','ensinar tocar violao','1');
+insert into turma(tipoturma,atividades_realizadas,horario_aulas) values ('B2','ensinar a dancar','2');
+insert into turma(tipoturma,atividades_realizadas,horario_aulas) values ('B3','ensinar teatro','3');
+insert into turma(tipoturma,atividades_realizadas,horario_aulas) values ('I','ensinar tocar violino','4');
 
 
-update turma set atividades_realizadas='ensinar tocar violao' where idturma ='1';
-update turma set atividades_realizadas='ensinar a dancar' where idturma ='2';
-update turma set atividades_realizadas='ensinar teatro' where idturma ='3';
-update turma set atividades_realizadas='ensinar tocar violino' where idturma ='4';
-
--- Adicionando campo na tabela turma
-alter table turma add column colaborador int not null;
-
--- Fazendo ligação entre colaborador e turma
-alter table turma add foreign key (id_colaborador) references colaborador(idcolaborador);
-
--- Fazendo insercoes com update na tabela turma 
-update turma set colaborador = '4' where idturma = '1';
-update turma set colaborador = '3' where idturma = '2';
-update turma set colaborador = '2' where idturma = '3';
-update turma set colaborador = '1' where idturma = '4';
-
--- Adicionando mais um campo na tabela turma
-alter table turma add column horario_de_aula int not null;
-
--- Fazendo ligação de turma com horario
-alter table turma add foreign key (horario_de_aula) references horario(idhorario);
-
--- Fazendo inserções com update na tabela turma
-update turma set horario_de_aula = '1' where idturma = '1';
-update turma set horario_de_aula = '2' where idturma = '2';
-update turma set horario_de_aula = '3' where idturma = '3';
-
--- Adicionando mais um campo na tabela turma
-alter table turma add column turno_da_turma int not null;
-
--- Fazendo ligação com a tabela turno
-alter table turma add foreign key (turno_da_turma) references turno(idturno);
-
--- Fazendo inserções com update na tabela turma
-update turma set turno_da_turma = '1' where idturma = '1'; 
-update turma set turno_da_turma = '2' where idturma = '2';
-update turma set turno_da_turma = '3' where idturma = '3';
 
 -- a linha abaixo cria a tabela colaborador
 create table colaborador(
@@ -121,6 +97,8 @@ insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
  values ('2012-10-3','Instrutor de violao','4');
 
+
+
 -- a linha abaixo cria a tabela turno
 create table turno(
 idturno int not null primary key auto_increment,
@@ -135,18 +113,7 @@ insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
 
 
--- a linha abaixo cria a tabela de horario
-create table horario (
-idhorario int not null primary key auto_increment,
-hora_inicio time,
-hora_fim time
 
-)Engine = InnoDB;
-
--- Insercao na tabela horario
-insert into horario(hora_inicio,hora_fim) values ('08:00:00','11:00:00');
-insert into horario(hora_inicio,hora_fim) values ('14:00:00','17:00:00');
-insert into horario(hora_inicio,hora_fim) values ('18:00:00','21:00:00');
 
 -- a tabela abaixo cria a tabela cadastro_universal
 create table cadastro_universal (
@@ -193,7 +160,7 @@ insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,S
 insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('5','3','2','4','S');
 insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('1','3','2','3','N');
 
-select * from ficha_de_avaliacao;
+
 
 -- a linha abaixo cria a tabela usuario
 create table usuario (
@@ -286,6 +253,22 @@ insert into ocorrencias(advertencia,data_ocorencia,motivo) values('L','2018-04-2
 
 
 
+-- a linha abaixo cria a tabela frequencia
+create table frequencia(
+idfrequencia int not null primary key auto_increment,
+presenca enum ('F','P'),
+data_aula timestamp default current_timestamp, -- gera automaticamente a data
+justificar_falta text
+
+)Engine = InnoDB;
+
+-- inserÃ§Ã£o na tabela frequencia
+insert into frequencia (presenca,justificar_falta) values ('F','estava doente');
+insert into frequencia (presenca,justificar_falta) values ('P',null);
+insert into frequencia (presenca,justificar_falta) values ('F','fui ao medico');
+insert into frequencia (presenca,justificar_falta) values ('F','onibus quebrou');
+
+
 
 -- a linha abaixo cria a tabela participantes
 create table participantes(
@@ -296,7 +279,8 @@ tipo_de_transporte varchar(45),
 advertencia text,
 desempenho varchar(45),
 beneficio_social varchar(50),
-ano_de_entrada date
+ano_de_entrada date,
+freq_part int
 
 
 )Engine = InnoDB;
@@ -315,27 +299,19 @@ alter table participantes add column idusuario INT;
 
 -- Fazendo uma ligacao de Participantes e Usuario
  alter table participantes add foreign key (idusuario) references usuario(idusu);
-
--- Adicionando mais o campo id_frequencia na tabela Participantes 
-alter table participantes add column id_frequencia int not null;
-
--- Fazendo ligacao de Participantes com frequencia
-alter table participantes add foreign key (id_frequencia) references frenquencia(idfrenquencia);
-
--- Inserindo com update na tabela participantes
-update participantes set id_frequencia ='1' where idcolaborador ='1';
-update participantes set id_frequencia ='2' where idcolaborador ='2';
-update participantes set id_frequencia ='3' where idcolaborador ='3';
+ 
+ -- faz ligação de participante com frequencia
+ alter table participantes add foreign key (freq_part) references frequencia(idfrequencia);
 
 -- Insert na tabela Participantes
-insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario) 
-values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','1','1');
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario,freq_part) 
+values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','1','1','1');
 
-insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario) 
-values('M','Sétimo Ano','Onibus','Regular','Bolsa Familia','2013-10-23','2','2');
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario,freq_part) 
+values('M','Sétimo Ano','Onibus','Regular','Bolsa Familia','2013-10-23','2','2','2');
 
-insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario)  
-values('D','Oitavo Ano','Nao ha','Bom','Nenhum','2012-11-11','3','3');
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario,freq_part)  
+values('D','Oitavo Ano','Nao ha','Bom','Nenhum','2012-11-11','3','3','3');
 
 insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario) 
 values('M','Quarto Ano','Onibus','Ruim','Bolsa Familia','2017-07-17','4','4');
@@ -350,22 +326,8 @@ values('D','9A','Trem','regular','bolsa cultura','2018-05-20');
 insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada) 
 values('N_M','6A','Onibus','ruim','bolsa estudantil','2018-08-09');
 
-
-
--- a linha abaixo cria a tabela frequencia
-create table frequencia(
-idfrequencia int not null primary key auto_increment,
-presenca enum ('F','P'),
-data_aula timestamp default current_timestamp, -- gera automaticamente a data
-justificar_falta text
-
-)Engine = InnoDB;
-
--- inserÃ§Ã£o na tabela frequencia
-insert into frequencia (presenca,justificar_falta) values ('F','estava doente');
-insert into frequencia (presenca,justificar_falta) values ('P',null);
-insert into frequencia (presenca,justificar_falta) values ('F','fui ao medico');
-
+insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario,freq_part) 
+values('m','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','2','2','4');
 
 
 
@@ -396,5 +358,11 @@ values('Moinho Inconcert','R','Concerto Musical realizado por todos os participa
 
 select u.nome as 'Participante',f.Selecionado from participantes as p inner join ficha_de_avaliacao f on p.idficha=f.id_ficha_avaliacao inner join usuario u on p.idusuario=u.idusu where f.Selecionado='N';
 
-select p.id_frequencia,count(f.presenca), u.nome from participantes p inner join frequencia f on p.id_frequencia = f.idfrequencia
-inner join usuario u on p.idusuario = u.idusu group by p.idfrenquencia,u.nome having f.presenca = 'F';
+
+
+select horario.hora_inicio as 'Inicio',horario.hora_fim as 'Fim',turma.atividades_realizadas as 'Atividades Realizadas', eventos.nome as 'Evento' from turma inner join horario on turma.horario_aulas=horario.idhorario inner join colaborador on colaborador.turmaministradas = turma.idturma inner join eventos on eventos.colaborador_responsavel=colaborador.idcolaborador;
+
+
+
+select frequencia.presenca,count(frequencia.presenca) as 'Quantidade de Faltas',usuario.nome as 'Nome' from participantes inner join usuario on participantes.idusuario=usuario.idusu inner join frequencia on participantes.freq_part=frequencia.idfrequencia group by frequencia.presenca having frequencia.presenca='F';
+
