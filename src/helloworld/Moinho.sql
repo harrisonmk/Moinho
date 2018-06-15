@@ -322,6 +322,11 @@ alter table participantes add column id_frequencia int not null;
 -- Fazendo ligacao de Participantes com frequencia
 alter table participantes add foreign key (id_frequencia) references frenquencia(idfrenquencia);
 
+-- Inserindo com update na tabela participantes
+update participantes set id_frequencia ='1' where idcolaborador ='1';
+update participantes set id_frequencia ='2' where idcolaborador ='2';
+update participantes set id_frequencia ='3' where idcolaborador ='3';
+
 -- Insert na tabela Participantes
 insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario) 
 values('D','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','1','1');
