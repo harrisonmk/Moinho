@@ -391,3 +391,5 @@ values('Moinho Inconcert','R','Concerto Musical realizado por todos os participa
 
 select u.nome as 'Participante',f.Selecionado from participantes as p inner join ficha_de_avaliacao f on p.idficha=f.id_ficha_avaliacao inner join usuario u on p.idusuario=u.idusu where f.Selecionado='N';
 
+select p.id_frequencia,count(f.presenca), u.nome from participantes p inner join frequencia f on p.id_frequencia = f.idfrequencia
+inner join usuario u on p.idusuario = u.idusu group by p.idfrenquencia,u.nome having f.presenca = 'F';
