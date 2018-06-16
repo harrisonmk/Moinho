@@ -341,7 +341,23 @@ values('N_M','6A','Onibus','ruim','bolsa estudantil','2018-08-09');
 insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario,freq_part) 
 values('m','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','2','2','4');
 
+-- Inserindo usuario na tabela Participantes;
+update participantes set idusuario = '1' where idparticipantes = '1';
+update participantes set idusuario = '2' where idparticipantes = '2';
+update participantes set idusuario = '3' where idparticipantes = '3';
+update participantes set idusuario = '4' where idparticipantes = '4';
 
+-- Inserindo frequencia na tabela Participantes;
+update participantes set freq_part = '1' where idparticipantes = '1';
+update participantes set freq_part = '2' where idparticipantes = '2';
+update participantes set freq_part = '3' where idparticipantes = '3';
+update participantes set freq_part = '4' where idparticipantes = '4';
+
+-- Inserindo ficha de avaliacao na tabela Participantes;
+update participantes set idficha = '1' where idparticipantes = '1';
+update participantes set idficha = '2' where idparticipantes = '2';
+update participantes set idficha = '3' where idparticipantes = '3';
+update participantes set idficha = '4' where idparticipantes = '4';
 
 -- a linha abaixo cria a tabela eventos
 create table eventos (
