@@ -397,7 +397,8 @@ on colaborador.turmaministradas = turma.idturma inner join eventos on
 
 select frequencia.presenca,count(frequencia.presenca) as 'Quantidade de Faltas',usuario.nome as 'Nome' from participantes
 inner join usuario on participantes.idusuario=usuario.idusu inner join frequencia on 
-participantes.freq_part=frequencia.idfrequencia group by frequencia.presenca where frequencia.presenca='F';
+participantes.freq_part=frequencia.idfrequencia group by frequencia.presenca,usuario.nome 
+having frequencia.presenca = 'F' ;
 
 
 select usuario.sexo,usuario.data_nascimento,usuario.naturalidade
