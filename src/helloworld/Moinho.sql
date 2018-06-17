@@ -56,6 +56,7 @@ tipoturma enum('B1','B2','B3','I'),
 atividades_realizadas text not null,
 horario_aulas int,
 foreign key (horario_aulas) references horario (idhorario)
+
 )Engine = InnoDB;
 
 
@@ -73,16 +74,11 @@ create table colaborador(
 
 idcolaborador int not null primary key auto_increment,
 ano_de_ingresso date,
-area_de_atuacao varchar(50)
-
+area_de_atuacao varchar(50),
+turmaministradas int not null,
+foreign key (turmaministradas) references turma(idturma)
 
 )Engine = InnoDB;
-
--- adiciona um campo ao final da tabela colaborador
-alter table colaborador add column turmaministradas int not null;
-
--- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela turma
-alter table colaborador add foreign key (turmaministradas) references turma(idturma);
 
 -- Insercoes na tabela de colaboradores
 insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
@@ -98,7 +94,6 @@ insert into colaborador(ano_de_ingresso,area_de_atuacao,turmaministradas)
  values ('2012-10-3','Instrutor de violao','4');
 
 
-
 -- a linha abaixo cria a tabela turno
 create table turno(
 idturno int not null primary key auto_increment,
@@ -111,8 +106,6 @@ turnoo enum('M','V','N')
 insert into turno (turnoo) values ('M');
 insert into turno (turnoo) values ('V');
 insert into turno (turnoo) values('N');
-
-
 
 
 -- a tabela abaixo cria a tabela cadastro_universal
@@ -139,7 +132,6 @@ insert into cadastro_universal(nome,data_nascimento,telefone,email)
 values('Hagata Christianne de Souza','1985-04-22','3231-9420','agatinha@hotmail.com');
 
 
-
 -- a linha abaixo cria a tabela ficha de avaliacao
 create table ficha_de_avaliacao (
 id_ficha_avaliacao int not null primary key auto_increment,
@@ -161,7 +153,6 @@ insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,S
 insert into ficha_de_avaliacao(avaliacao_musical,danca,desenvoltura,tecnologia,Selecionado) values ('1','3','2','3','N');
 
 
-
 -- a linha abaixo cria a tabela usuario
 create table usuario (
 
@@ -177,7 +168,9 @@ responsaveis text,
 email varchar(45),
 profissao varchar(45),
 raca varchar(30),
-religiao varchar(45)
+religiao varchar(45),
+ende_local int,
+foreign key (ende_local) references endereco(idend)
 
 )Engine = InnoDB;
 
@@ -195,6 +188,11 @@ values('Edwin Santos','M','1990-02-28','Corumbaense','Brasileiro','P','1800.00',
 insert into usuario(nome,sexo,data_nascimento,naturalidade,nacionalidade,escola,rendafamiliar,email,raca,religiao)
 values('Christiane Chales','F','1995-05-15','Corumbaense','Brasileira','E','1000.00','ChrisBH@hotmail.com','Parda','Catolica');
 
+-- Inserindo na tabela Usuario;
+update usuario set ende_local ='1' where idusu ='1';
+update usuario set ende_local ='2' where idusu ='2';
+update usuario set ende_local ='3' where idusu ='3';
+update usuario set ende_local ='4' where idusu ='4';
 
 -- a linha abaixo adiciona a tabela endereco
 create table endereco (
@@ -221,14 +219,10 @@ insert into endereco (unidade_federativa,municipio,bairro,rua,complemento,num_da
 -- a linha abaixo cria a tabela pais(mae,pai)
 create table pais (
 idpais int not null primary key auto_increment,
-nome varchar(45)
+nome_pai varchar(45),
+nome_mae varchar(45)
 
 )Engine = InnoDB;
-
-
--- Alterando e adicionando um campo na tabela pais
-alter table pais change column nome nome_pai varchar(45);
-alter table pais add column nome_mae varchar(45);
 
 -- Insercao na Tabela pais
 insert into pais(nome_pai,nome_mae) values ('Andre de Lima e Silva','Ana Mirian Souza e Silva');
@@ -251,7 +245,16 @@ insert into ocorrencias(advertencia,data_ocorencia,motivo) values('G','2018-05-1
 insert into ocorrencias(advertencia,data_ocorencia,motivo) values('M','2018-06-09','briga com alunos');
 insert into ocorrencias(advertencia,data_ocorencia,motivo) values('L','2018-04-25','bagunca em sala');
 
+-- Criando o campo Id_parti para tabela Participantes
+alter table ocorrencias add column id_parti int;
 
+-- Ligando Ocorrencias com a tabela Participantes  
+alter table ocorrencias add foreign key (id_parti) references participantes(idparticipantes);
+
+-- Inserindo na tabela Ocorrencias
+update ocorrencias set idparti = '1' where idocorrencias = '1';
+update ocorrencias set idparti = '2' where idocorrencias = '2';
+update ocorrencias set idparti = '3' where idocorrencias = '3';
 
 -- a linha abaixo cria a tabela frequencia
 create table frequencia(
@@ -273,47 +276,21 @@ insert into frequencia (presenca,justificar_falta) values ('F','onibus quebrou')
 -- a linha abaixo cria a tabela participantes
 create table participantes(
 idparticipantes int not null primary key auto_increment,
-status_Participante ENUM('D','M'),
+status_Participante ENUM('D','M','N_M'),
 serie varchar(45),
 tipo_de_transporte varchar(45),
 advertencia text,
 desempenho varchar(45),
 beneficio_social varchar(50),
 ano_de_entrada date,
-freq_part int
-
+freq_part int,
+idficha INT,
+idusuario INT,
+foreign key (idficha) references ficha_de_avaliacao(id_ficha_avaliacao),
+foreign key (idusuario) references usuario(idusu),
+foreign key (freq_part) references frequencia(idfrequencia)
 
 )Engine = InnoDB;
-
--- Alterando o Campo Status do Participante
-alter table participantes modify status_participante ENUM('D','M','N_M');
-
--- Adicionando um Campo na tabela Participante
-alter table participantes add column idficha INT;
-
--- Adicionando mais um Campo na tabela Participante
-alter table participantes add column idusuario INT;
-
--- Fazendo uma ligacao de Participantes e Ficha de avaliacao
- alter table participantes add foreign key (idficha) references ficha_de_avaliacao(id_ficha_avaliacao);
-
--- Fazendo uma ligacao de Participantes e Usuario
- alter table participantes add foreign key (idusuario) references usuario(idusu);
- 
- -- faz ligação de participante com frequencia
- alter table participantes add foreign key (freq_part) references frequencia(idfrequencia);
-
--- Criando um campo para a tabela participantes
-alter table participantes add column ende_local int not null;
-
--- Fazendo ligação de Participantes com Endereco
-alter table participantes add foreign key (ende_local) references endereco(idend);
-
--- Inserindo na tabela Participantes;
-update participantes set ende_local ='1' where idparticipantes ='1';
-update participantes set ende_local ='2' where idparticipantes ='2';
-update participantes set ende_local ='3' where idparticipantes ='3';
-update participantes set ende_local ='4' where idparticipantes ='4';
 
 -- Insert na tabela Participantes
 insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario,freq_part) 
@@ -339,7 +316,7 @@ insert into participantes(status_Participante ,serie,tipo_de_transporte,desempen
 values('N_M','6A','Onibus','ruim','bolsa estudantil','2018-08-09');
 
 insert into participantes(status_Participante ,serie,tipo_de_transporte,desempenho,beneficio_social ,ano_de_entrada,idficha,idusuario,freq_part) 
-values('m','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','2','2','4');
+values('M','Quinto Ano','Bicicleta','Otimo','Nenhum','2014-02-15','2','2','4');
 
 -- Inserindo usuario na tabela Participantes;
 update participantes set idusuario = '1' where idparticipantes = '1';
@@ -359,22 +336,18 @@ update participantes set idficha = '2' where idparticipantes = '2';
 update participantes set idficha = '3' where idparticipantes = '3';
 update participantes set idficha = '4' where idparticipantes = '4';
 
+
 -- a linha abaixo cria a tabela eventos
 create table eventos (
 idevento int not null primary key auto_increment,
 nome varchar(45),
 tipo_evento enum('A','C','R'),
 descricao text,
-dataeven date
-
+dataeven date,
+colaborador_responsavel int not null,
+foreign key (colaborador_responsavel) references colaborador(idcolaborador)
 
 )Engine = InnoDB;
-
--- a linha abaixc cria um campo colaborador_responsavel dentro da table eventos
-alter table eventos add column colaborador_responsavel int not null; 
-
--- a linha abaixo cria uma chave estrangeira e faz referencia com a tabela colaborador
-alter table eventos add foreign key (colaborador_responsavel) references colaborador(idcolaborador);
 
 -- Fazendo inserções na tabela eventos
 insert into eventos(nome,tipo_evento,descricao,dataeven,colaborador_responsavel) 
@@ -383,10 +356,19 @@ values('Festa Junina Cultural','A','Festa Junina que será realizada pelo pessoal
 insert into eventos(nome,tipo_evento,descricao,dataeven,colaborador_responsavel) 
 values('Moinho Inconcert','R','Concerto Musical realizado por todos os participantes do Moinho Cultural','2018-04-29','4');
 
+-- Criando o campo Parti_cipantes na tabela eventos
+alter table eventos add column parti_cipantes int;
 
-select u.nome as 'Participante',f.Selecionado from participantes as p inner join ficha_de_avaliacao f on p.idficha=f.id_ficha_avaliacao inner join usuario u on p.idusuario=u.idusu where f.Selecionado='N';
+-- Ligando eventos com Participantes
+alter table eventos add foreign key (parti_cipantes) references participantes(idparticipantes);
+-- Inserindo na tabela Eventos
+update eventos set parti_cipantes = '1' where idevento = '1';
+update eventos set parti_cipantes = '2' where idevento = '2';
 
-
+select u.nome as 'Participante',f.Selecionado from participantes as p inner join ficha_de_avaliacao f on
+ p.idficha=f.id_ficha_avaliacao inner join usuario u on p.idusuario=u.idusu where f.Selecionado='N';
+update ficha_de_avaliacao set Selecionado = 'S' where id_ficha_avaliacao = '1'; 
+update ficha_de_avaliacao set Selecionado = 'S' where id_ficha_avaliacao = '4'; 
 
 select horario.hora_inicio as 'Inicio',horario.hora_fim as 'Fim',turma.atividades_realizadas as 'Atividades Realizadas', 
 eventos.nome as 'Evento' from turma inner join horario on turma.horario_aulas=horario.idhorario inner join colaborador 
@@ -394,11 +376,13 @@ on colaborador.turmaministradas = turma.idturma inner join eventos on
  eventos.colaborador_responsavel=colaborador.idcolaborador;
 
 
-
 select frequencia.presenca,count(frequencia.presenca) as 'Quantidade de Faltas',usuario.nome as 'Nome' from participantes
 inner join usuario on participantes.idusuario=usuario.idusu inner join frequencia on 
 participantes.freq_part=frequencia.idfrequencia group by frequencia.presenca,usuario.nome 
 having frequencia.presenca = 'F' ;
 
-
-select usuario.sexo,usuario.data_nascimento,usuario.naturalidade
+select usuario.sexo,usuario.data_nascimento as 'Data de Nascimento',usuario.naturalidade,endereco.unidade_federativa 'Unidade Federativa',usuario.rendafamiliar, participantes.desempenho,
+frequencia.presenca, participantes.status_Participante 'Status do Participante' ,eventos.nome as 'Nome do Evento',eventos.tipo_evento as 'Tipo de Evento',ocorrencias.motivo from participantes 
+inner join usuario on participantes.idusuario = usuario.idusu inner join endereco on endereco.idend = usuario.ende_local 
+left join ocorrencias on ocorrencias.id_parti = participantes.idparticipantes left join eventos on eventos.parti_cipantes = 
+participantes.idparticipantes inner join frequencia on frequencia.idfrequencia = participantes.freq_part;
