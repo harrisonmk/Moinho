@@ -384,6 +384,5 @@ having frequencia.presenca = 'F' ;
 select usuario.nome,usuario.sexo,usuario.data_nascimento as 'Data de Nascimento',usuario.naturalidade,endereco.unidade_federativa 'Unidade Federativa',usuario.rendafamiliar, participantes.desempenho,
 frequencia.presenca, participantes.status_Participante 'Status do Participante',eventos.nome as 'Nome do Evento',eventos.tipo_evento as 'Tipo de Evento',ocorrencias.motivo from participantes 
 inner join usuario on participantes.idusuario = usuario.idusu inner join endereco on endereco.idend = usuario.ende_local 
-join ocorrencias on /*ocorrencias.idocorrencias = ocorrencias.idocorrencias =*/ participantes.idparticipantes = ocorrencias.id_parti join eventos on /*eventos.idevento = 
-eventos.idevento*/participantes.idparticipantes = eventos.parti_cipantes inner join frequencia on frequencia.idfrequencia = participantes.freq_part 
+join ocorrencias on participantes.idparticipantes = ocorrencias.id_parti join eventos on participantes.idparticipantes = eventos.parti_cipantes inner join frequencia on frequencia.idfrequencia = participantes.freq_part 
 group by usuario.data_nascimento,eventos.nome;
