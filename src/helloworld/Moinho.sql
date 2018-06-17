@@ -252,9 +252,9 @@ alter table ocorrencias add column id_parti int;
 alter table ocorrencias add foreign key (id_parti) references participantes(idparticipantes);
 
 -- Inserindo na tabela Ocorrencias
-update ocorrencias set idparti = '1' where idocorrencias = '1';
-update ocorrencias set idparti = '2' where idocorrencias = '2';
-update ocorrencias set idparti = '3' where idocorrencias = '3';
+update ocorrencias set id_parti = '1' where idocorrencias = '1';
+update ocorrencias set id_parti = '2' where idocorrencias = '2';
+update ocorrencias set id_parti = '3' where idocorrencias = '3';
 
 -- a linha abaixo cria a tabela frequencia
 create table frequencia(
@@ -381,8 +381,9 @@ inner join usuario on participantes.idusuario=usuario.idusu inner join frequenci
 participantes.freq_part=frequencia.idfrequencia group by frequencia.presenca,usuario.nome 
 having frequencia.presenca = 'F' ;
 
-select usuario.sexo,usuario.data_nascimento as 'Data de Nascimento',usuario.naturalidade,endereco.unidade_federativa 'Unidade Federativa',usuario.rendafamiliar, participantes.desempenho,
-frequencia.presenca, participantes.status_Participante 'Status do Participante' ,eventos.nome as 'Nome do Evento',eventos.tipo_evento as 'Tipo de Evento',ocorrencias.motivo from participantes 
+select usuario.nome,usuario.sexo,usuario.data_nascimento as 'Data de Nascimento',usuario.naturalidade,endereco.unidade_federativa 'Unidade Federativa',usuario.rendafamiliar, participantes.desempenho,
+frequencia.presenca, participantes.status_Participante 'Status do Participante',eventos.nome as 'Nome do Evento',eventos.tipo_evento as 'Tipo de Evento',ocorrencias.motivo from participantes 
 inner join usuario on participantes.idusuario = usuario.idusu inner join endereco on endereco.idend = usuario.ende_local 
-left join ocorrencias on ocorrencias.id_parti = participantes.idparticipantes left join eventos on eventos.parti_cipantes = 
-participantes.idparticipantes inner join frequencia on frequencia.idfrequencia = participantes.freq_part;
+join ocorrencias on /*ocorrencias.idocorrencias = ocorrencias.idocorrencias =*/ participantes.idparticipantes = ocorrencias.id_parti join eventos on /*eventos.idevento = 
+eventos.idevento*/participantes.idparticipantes = eventos.parti_cipantes inner join frequencia on frequencia.idfrequencia = participantes.freq_part 
+group by usuario.data_nascimento,eventos.nome;
